@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useOrder } from '../context/OrderContext';
 import { ArrowLeft, Star } from 'lucide-react';
+import Aos from 'aos';
 
 const ReviewPage: React.FC = () => {
   const navigate = useNavigate();
   const { orderId } = useParams<{ orderId: string }>();
   const { user } = useAuth();
   const { getOrderById, addReview } = useOrder();
-  
+
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
   if (!user || !orderId) {
     navigate('/login');
@@ -70,7 +78,7 @@ const ReviewPage: React.FC = () => {
         </div>
       </header>
 
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div data-aos="fade-up" className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Beri Review</h1>
@@ -113,11 +121,10 @@ const ReviewPage: React.FC = () => {
                     className="focus:outline-none transition-colors duration-200"
                   >
                     <Star
-                      className={`w-8 h-8 ${
-                        star <= (hoveredRating || rating)
-                          ? 'text-yellow-400 fill-current'
-                          : 'text-gray-300'
-                      }`}
+                      className={`w-8 h-8 ${star <= (hoveredRating || rating)
+                        ? 'text-yellow-400 fill-current'
+                        : 'text-gray-300'
+                        }`}
                     />
                   </button>
                 ))}
@@ -126,10 +133,10 @@ const ReviewPage: React.FC = () => {
                     <>
                       {rating}/5 - {
                         rating === 1 ? 'Sangat Buruk' :
-                        rating === 2 ? 'Buruk' :
-                        rating === 3 ? 'Cukup' :
-                        rating === 4 ? 'Baik' :
-                        'Sangat Baik'
+                          rating === 2 ? 'Buruk' :
+                            rating === 3 ? 'Cukup' :
+                              rating === 4 ? 'Baik' :
+                                'Sangat Baik'
                       }
                     </>
                   )}

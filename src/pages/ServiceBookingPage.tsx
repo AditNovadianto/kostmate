@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useOrder } from '../context/OrderContext';
 import { ArrowLeft, Calendar, Clock, MapPin } from 'lucide-react';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 const ServiceBookingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +20,13 @@ const ServiceBookingPage: React.FC = () => {
     notes: ''
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
   const services = [
     { id: 'laundry', name: 'Express Laundry', price: 15000, description: 'Cuci, kering, dan lipat' },
@@ -84,10 +93,12 @@ const ServiceBookingPage: React.FC = () => {
               <ArrowLeft className="w-5 h-5 mr-2" />
               Kembali
             </button>
+
             <div className="flex items-center">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-green-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">K</span>
               </div>
+
               <span className="ml-2 text-xl font-bold text-gray-900">Kostmate</span>
             </div>
           </div>
@@ -95,14 +106,15 @@ const ServiceBookingPage: React.FC = () => {
       </header>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
+        <div data-aos="fade-up" className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Pesan Layanan</h1>
+
           <p className="text-gray-600">Pilih layanan yang Anda butuhkan dan isi detail pesanan</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Booking Form */}
-          <div className="lg:col-span-2">
+          <div data-aos="fade-up" data-aos-delay="100" className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Service Selection */}
@@ -110,6 +122,7 @@ const ServiceBookingPage: React.FC = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-3">
                     Pilih Layanan
                   </label>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {services.map((service) => (
                       <label
@@ -127,13 +140,16 @@ const ServiceBookingPage: React.FC = () => {
                           onChange={handleChange}
                           className="sr-only"
                         />
+
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
                             <h3 className="text-sm font-medium text-gray-900">{service.name}</h3>
+
                             <span className="text-sm font-medium text-green-600">
                               Rp {service.price.toLocaleString('id-ID')}
                             </span>
                           </div>
+
                           <p className="text-xs text-gray-500 mt-1">{service.description}</p>
                         </div>
                       </label>
@@ -146,6 +162,7 @@ const ServiceBookingPage: React.FC = () => {
                   <label htmlFor="details" className="block text-sm font-medium text-gray-700">
                     Detail Layanan
                   </label>
+
                   <textarea
                     id="details"
                     name="details"
@@ -163,6 +180,7 @@ const ServiceBookingPage: React.FC = () => {
                   <label htmlFor="address" className="block text-sm font-medium text-gray-700">
                     Alamat Lengkap
                   </label>
+
                   <textarea
                     id="address"
                     name="address"
@@ -181,6 +199,7 @@ const ServiceBookingPage: React.FC = () => {
                     <label htmlFor="date" className="block text-sm font-medium text-gray-700">
                       Tanggal
                     </label>
+
                     <div className="mt-1 relative">
                       <input
                         type="date"
@@ -192,6 +211,7 @@ const ServiceBookingPage: React.FC = () => {
                         onChange={handleChange}
                         className="block w-full px-3 py-2 pl-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                       />
+
                       <Calendar className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
                     </div>
                   </div>
@@ -200,6 +220,7 @@ const ServiceBookingPage: React.FC = () => {
                     <label htmlFor="time" className="block text-sm font-medium text-gray-700">
                       Waktu
                     </label>
+
                     <div className="mt-1 relative">
                       <select
                         id="time"
@@ -214,6 +235,7 @@ const ServiceBookingPage: React.FC = () => {
                           <option key={time} value={time}>{time}</option>
                         ))}
                       </select>
+
                       <Clock className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
                     </div>
                   </div>
@@ -224,6 +246,7 @@ const ServiceBookingPage: React.FC = () => {
                   <label htmlFor="notes" className="block text-sm font-medium text-gray-700">
                     Catatan Tambahan (Opsional)
                   </label>
+
                   <textarea
                     id="notes"
                     name="notes"
@@ -247,7 +270,7 @@ const ServiceBookingPage: React.FC = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="lg:col-span-1">
+          <div data-aos="fade-up" data-aos-delay="200" className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sticky top-8">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Ringkasan Pesanan</h2>
 
@@ -256,8 +279,10 @@ const ServiceBookingPage: React.FC = () => {
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="font-medium text-gray-900">{selectedService.name}</h3>
+
                       <p className="text-sm text-gray-500">{selectedService.description}</p>
                     </div>
+
                     <span className="font-medium text-gray-900">
                       Rp {selectedService.price.toLocaleString('id-ID')}
                     </span>
@@ -267,6 +292,7 @@ const ServiceBookingPage: React.FC = () => {
                     <div className="pt-4 border-t border-gray-200">
                       <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
                         <Calendar className="w-4 h-4" />
+
                         <span>{new Date(formData.date).toLocaleDateString('id-ID', {
                           weekday: 'long',
                           year: 'numeric',
@@ -274,12 +300,16 @@ const ServiceBookingPage: React.FC = () => {
                           day: 'numeric'
                         })}</span>
                       </div>
+
                       <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
                         <Clock className="w-4 h-4" />
+
                         <span>{formData.time}</span>
                       </div>
+
                       <div className="flex items-start space-x-2 text-sm text-gray-600">
                         <MapPin className="w-4 h-4 mt-0.5" />
+
                         <span>{formData.address}</span>
                       </div>
                     </div>
@@ -288,6 +318,7 @@ const ServiceBookingPage: React.FC = () => {
                   <div className="pt-4 border-t border-gray-200">
                     <div className="flex justify-between items-center text-lg font-semibold text-gray-900">
                       <span>Total</span>
+
                       <span>Rp {selectedService.price.toLocaleString('id-ID')}</span>
                     </div>
                   </div>
@@ -309,7 +340,7 @@ const ServiceBookingPage: React.FC = () => {
                   </div> */}
                 </div>
               ) : (
-                <p className="text-gray-500 text-center py-8">
+                <p data-aos="fade-up" className="text-gray-500 text-center py-8">
                   Pilih layanan untuk melihat ringkasan pesanan
                 </p>
               )}

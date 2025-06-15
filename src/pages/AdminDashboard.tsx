@@ -13,12 +13,21 @@ import {
   User,
   Star
 } from 'lucide-react';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const { orders, updateOrderStatus, updatePaymentStatus } = useOrder();
   // const [selectedTab, setSelectedTab] = useState<'orders' | 'stats'>('orders');
+
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {
@@ -113,7 +122,7 @@ const AdminDashboard: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Section */}
-        <div className="mb-8">
+        <div data-aos="fade-up" className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Dashboard Admin
           </h1>
@@ -124,7 +133,7 @@ const AdminDashboard: React.FC = () => {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div data-aos="fade-up" data-aos-delay="100" className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center">
               <div className="p-2 bg-blue-100 rounded-lg">
                 <Package className="w-6 h-6 text-blue-600" />
@@ -136,7 +145,7 @@ const AdminDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div data-aos="fade-up" data-aos-delay="200" className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center">
               <div className="p-2 bg-yellow-100 rounded-lg">
                 <Clock className="w-6 h-6 text-yellow-600" />
@@ -148,7 +157,7 @@ const AdminDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div data-aos="fade-up" data-aos-delay="300" className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center">
               <div className="p-2 bg-green-100 rounded-lg">
                 <CheckCircle className="w-6 h-6 text-green-600" />
@@ -160,7 +169,7 @@ const AdminDashboard: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <div data-aos="fade-up" data-aos-delay="400" className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <div className="flex items-center">
               <div className="p-2 bg-purple-100 rounded-lg">
                 <Star className="w-6 h-6 text-purple-600" />
@@ -174,14 +183,14 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Revenue Card */}
-        <div className="bg-gradient-to-r from-blue-600 to-green-500 rounded-xl p-6 text-white mb-8">
+        <div data-aos="fade-up" data-aos-delay="500" className="bg-gradient-to-r from-blue-600 to-green-500 rounded-xl p-6 text-white mb-8">
           <h3 className="text-lg font-semibold mb-2">Total Pendapatan</h3>
           <p className="text-3xl font-bold">Rp {stats.totalRevenue.toLocaleString('id-ID')}</p>
           <p className="text-blue-100 mt-2">Dari {orders.filter(o => o.paymentStatus === 'paid').length} pesanan yang dibayar</p>
         </div>
 
         {/* Orders Management */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div data-aos="fade-up" data-aos-delay="600" className="bg-white rounded-xl shadow-sm border border-gray-100">
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Kelola Pesanan</h2>
             <p className="text-gray-600 mt-1">Ubah status pesanan dan assign mitra</p>

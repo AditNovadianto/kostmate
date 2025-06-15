@@ -13,6 +13,8 @@ import {
   ArrowRight,
   Phone,
 } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -30,6 +32,13 @@ const LandingPage: React.FC = () => {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
   const services = [
     {
@@ -146,7 +155,7 @@ const LandingPage: React.FC = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-[200px] bg-gradient-to-br from-blue-50 to-green-50 py-20">
+      <section data-aos="fade-up" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-green-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
@@ -176,7 +185,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      <section data-aos="fade-up" data-aos-delay="100" id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
@@ -188,7 +197,7 @@ const LandingPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300 group">
+              <div data-aos="fade-up" data-aos-delay={100 * (index + 1)} key={index} className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300 group">
                 <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-100 to-green-100 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
                   <service.icon className="w-8 h-8 text-blue-600" />
                 </div>
@@ -209,7 +218,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 bg-gray-50">
+      <section data-aos="fade-up" data-aos-delay="200" id="how-it-works" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How Kostmate Works</h2>
@@ -221,7 +230,7 @@ const LandingPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {steps.map((step, index) => (
-              <div key={index} className="text-center">
+              <div data-aos="fade-up" data-aos-delay={100 * (index + 1)} key={index} className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded-full text-xl font-bold mb-6">
                   {step.number}
                 </div>
@@ -236,7 +245,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section id='benefit' className="py-20 bg-white">
+      <section id='benefit' data-aos="fade-up" data-aos-delay="300" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Kostmate?</h2>
@@ -248,7 +257,7 @@ const LandingPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="text-center p-8">
+              <div data-aos="fade-up" data-aos-delay={100 * (index + 1)} key={index} className="text-center p-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-100 to-green-100 rounded-xl mb-6">
                   <feature.icon className="w-8 h-8 text-blue-600" />
                 </div>
@@ -263,7 +272,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Testimonial Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-green-500">
+      <section data-aos="fade-up" data-aos-delay="400" className="py-20 bg-gradient-to-r from-blue-600 to-green-500">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
             <div className="flex justify-center mb-4">
@@ -277,13 +286,13 @@ const LandingPage: React.FC = () => {
               and the delivery is always on time. Highly recommended!"
             </blockquote>
 
-            <cite className="text-white/80">— Sarah M., Boarding House Resident</cite>
+            <cite className="text-white/80">— Aditya Novadianto Pratama., Boarding House Resident</cite>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900">
+      <section data-aos="fade-up" className="py-20 bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Simplify Your Daily Life?
@@ -303,7 +312,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="bg-gray-900 border-t border-gray-800">
+      <footer data-aos="fade-up" id="contact" className="bg-gray-900 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
