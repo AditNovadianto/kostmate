@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useOrder } from '../context/OrderContext';
-import { ArrowLeft, Calendar, Clock, MapPin } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, CreditCard, MapPin } from 'lucide-react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
@@ -10,6 +10,7 @@ const ServiceBookingPage: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { createOrder } = useOrder();
+  const [service, setService] = useState<string>('');
 
   const [formData, setFormData] = useState({
     service: '',
@@ -44,6 +45,8 @@ const ServiceBookingPage: React.FC = () => {
     navigate('/login');
     return null;
   }
+
+  console.log(service);
 
   const selectedService = services.find(s => s.id === formData.service);
 
@@ -260,7 +263,7 @@ const ServiceBookingPage: React.FC = () => {
 
                 <button
                   type="submit"
-                  disabled={loading || !formData.service}
+                  disabled={loading || !formData.service || !service}
                   className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                 >
                   {loading ? 'Memproses...' : 'Pesan Sekarang'}
@@ -324,20 +327,48 @@ const ServiceBookingPage: React.FC = () => {
                   </div>
 
                   {/* Payment Info */}
-                  {/* <div className="pt-4 border-t border-gray-200">
+                  <div className="pt-4 border-t border-gray-200">
                     <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
                       <CreditCard className="w-4 h-4" />
                       <span>Pembayaran</span>
                     </div>
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xs text-blue-800 mb-1">
-                        <strong>Simulasi Pembayaran</strong>
-                      </p>
-                      <p className="text-xs text-blue-700">
-                        Setelah menekan "Pesan Sekarang", status pembayaran akan otomatis berubah menjadi "Dibayar" untuk demo.
-                      </p>
+
+                    {/* Payment Method Selection */}
+                    <div className="mb-4">
+                      <label className="block text-sm text-gray-700 mb-1">Metode Pembayaran</label>
+                      <select
+                        className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        defaultValue="va"
+                        onChange={(e) => setService(e.target.value)}
+                      >
+                        <option value="va">Virtual Account</option>
+                        <option value="manual">Transfer Bank Manual</option>
+                      </select>
                     </div>
-                  </div> */}
+
+                    {/* Virtual Account Info */}
+                    <div className="bg-blue-50 p-3 rounded-lg mb-3">
+                      <p className="text-xs text-blue-800 mb-1 font-semibold">Instruksi Virtual Account</p>
+                      <ul className="text-xs text-blue-700 space-y-1">
+                        <li>• Bank: BCA</li>
+                        <li>• Nomor VA: 1234 5678 9012 3456</li>
+                        <li>• Total Bayar: Rp {selectedService.price.toLocaleString('id-ID')}</li>
+                        <li>• Pembayaran akan diverifikasi otomatis.</li>
+                      </ul>
+                    </div>
+
+                    {/* Manual Transfer Info */}
+                    <div className="bg-yellow-50 p-3 rounded-lg">
+                      <p className="text-xs text-yellow-800 mb-1 font-semibold">Instruksi Transfer Manual</p>
+                      <ul className="text-xs text-yellow-700 space-y-1">
+                        <li>• Bank: BRI</li>
+                        <li>• Nomor Rekening: 0123 4567 8901</li>
+                        <li>• Nama Rekening: PT Kostmate</li>
+                        <li>• Total Bayar: Rp {selectedService.price.toLocaleString('id-ID')}</li>
+                        <li>• Harap kirim bukti transfer ke admin@kostmate.com</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <p data-aos="fade-up" className="text-gray-500 text-center py-8">

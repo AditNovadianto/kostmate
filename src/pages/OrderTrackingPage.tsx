@@ -118,8 +118,8 @@ const OrderTrackingPage: React.FC = () => {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div data-aos="fade-up" className="mb-8">
+      <div data-aos="fade-up" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Lacak Pesanan</h1>
 
           <p className="text-gray-600">Pantau status pesanan layanan Anda</p>
@@ -142,10 +142,8 @@ const OrderTrackingPage: React.FC = () => {
           </div>
         ) : (
           <div className="space-y-6">
-            {userOrders.map((order, index) => (
+            {userOrders.map((order) => (
               <div
-                data-aos="fade-up"
-                data-aos-delay={100 * (index + 1)}
                 key={order.id}
                 className={`bg-white rounded-xl shadow-sm border p-6 transition-all duration-300 ${highlightOrderId === order.id
                   ? 'border-blue-500 ring-2 ring-blue-200 shadow-lg'
