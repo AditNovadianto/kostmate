@@ -19,7 +19,7 @@ import {
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-const PartnerDashboard: React.FC = () => {
+const DashboardPartner: React.FC = () => {
     const navigate = useNavigate();
     const { user, logout } = useAuth();
     const { orders, updateOrderStatus } = useOrder();
@@ -383,4 +383,4 @@ const PartnerDashboard: React.FC = () => {
     );
 };
 
-export default PartnerDashboard;
+export default DashboardPartner;

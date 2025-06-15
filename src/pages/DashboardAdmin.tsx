@@ -16,7 +16,7 @@ import {
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-const AdminDashboard: React.FC = () => {
+const DashboardAdmin: React.FC = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const { orders, updateOrderStatus, updatePaymentStatus } = useOrder();
@@ -295,4 +295,4 @@ const AdminDashboard: React.FC = () => {
   );
 };
 
-export default AdminDashboard;
+export default DashboardAdmin;

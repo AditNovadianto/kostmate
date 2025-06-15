@@ -6,11 +6,11 @@ import DashboardPage from './pages/DashboardPage';
 import ServiceBookingPage from './pages/ServiceBookingPage';
 import OrderTrackingPage from './pages/OrderTrackingPage';
 import ReviewPage from './pages/ReviewPage';
-import AdminDashboard from './pages/AdminDashboard';
+import DashboardAdmin from './pages/DashboardAdmin';
 import { AuthProvider } from './context/AuthContext';
 import { OrderProvider } from './context/OrderContext';
 import NotFound from './pages/NotFound';
-import PartnerDashboard from './pages/partnerDashboard';
+import DashboardPartner from './pages/DashboardPartner';
 
 function App() {
   return (
@@ -26,8 +26,8 @@ function App() {
               <Route path="/book-service" element={<ServiceBookingPage />} />
               <Route path="/track-order" element={<OrderTrackingPage />} />
               <Route path="/review/:orderId" element={<ReviewPage />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/partner" element={<PartnerDashboard />} />
+              <Route path="/admin" element={<DashboardAdmin />} />
+              <Route path="/partner" element={<DashboardPartner />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
