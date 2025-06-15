@@ -104,7 +104,7 @@ const LandingPage: React.FC = () => {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-100">
-        <div className={`${scrolled ? 'backdrop-blur-md bg-white/30' : 'bg-transparent'} transition-all fixed top-0 w-full mx-auto px-4 sm:px-6 lg:px-8`}>
+        <div className={`${scrolled ? 'backdrop-blur-md bg-white/30' : 'bg-transparent'} z-10 transition-all fixed top-0 w-full mx-auto px-4 sm:px-6 lg:px-8`}>
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="cursor-pointer flex-shrink-0 flex items-center">
@@ -114,12 +114,19 @@ const LandingPage: React.FC = () => {
                 <span className="ml-2 text-xl font-bold text-gray-900">Kostmate</span>
               </div>
             </div>
+
             <nav className="hidden md:flex space-x-8">
+              <a href="#" className="font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200">Home</a>
+
               <a href="#services" className="font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200">Services</a>
+
               <a href="#how-it-works" className="font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200">How it Works</a>
-              <a href="#about" className="font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200">About</a>
+
+              <a href="#benefit" className="font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200">Benefit</a>
+
               <a href="#contact" className="font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200">Contact</a>
             </nav>
+
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => navigate('/login')}
@@ -139,17 +146,19 @@ const LandingPage: React.FC = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-green-50 py-20">
+      <section className="pt-[200px] bg-gradient-to-br from-blue-50 to-green-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Daily Services for
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-500"> Boarding House</span> Residents
             </h1>
+
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Kostmate connects you with trusted local service providers for laundry, cleaning, delivery, and more.
               Making your boarding house life easier, one service at a time.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate('/register')}
@@ -157,6 +166,7 @@ const LandingPage: React.FC = () => {
               >
                 Start Ordering Now
               </button>
+
               <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg hover:border-blue-600 hover:text-blue-600 transition-all duration-200">
                 Learn More
               </button>
@@ -170,6 +180,7 @@ const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               From daily essentials to quick fixes, we've got your boarding house needs covered
             </p>
@@ -181,10 +192,14 @@ const LandingPage: React.FC = () => {
                 <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-100 to-green-100 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
                   <service.icon className="w-8 h-8 text-blue-600" />
                 </div>
+
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
+
                 <p className="text-gray-600 mb-4">{service.description}</p>
+
                 <div className="flex items-center justify-between">
                   <span className="text-green-600 font-semibold">{service.price}</span>
+
                   <ArrowRight className="w-5 h-5 text-blue-600 group-hover:translate-x-1 transition-transform duration-200" />
                 </div>
               </div>
@@ -198,6 +213,7 @@ const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How Kostmate Works</h2>
+
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Getting the services you need is as easy as 1-2-3
             </p>
@@ -209,7 +225,9 @@ const LandingPage: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded-full text-xl font-bold mb-6">
                   {step.number}
                 </div>
+
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{step.title}</h3>
+
                 <p className="text-gray-600">{step.description}</p>
               </div>
             ))}
@@ -218,10 +236,11 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section id='benefit' className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Kostmate?</h2>
+
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               We're committed to making your boarding house experience better
             </p>
@@ -233,7 +252,9 @@ const LandingPage: React.FC = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-100 to-green-100 rounded-xl mb-6">
                   <feature.icon className="w-8 h-8 text-blue-600" />
                 </div>
+
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
+
                 <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
@@ -250,10 +271,12 @@ const LandingPage: React.FC = () => {
                 <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
               ))}
             </div>
+
             <blockquote className="text-xl md:text-2xl text-white mb-6">
               "Kostmate has been a game-changer for my boarding house life. The laundry service is so convenient,
               and the delivery is always on time. Highly recommended!"
             </blockquote>
+
             <cite className="text-white/80">— Sarah M., Boarding House Resident</cite>
           </div>
         </div>
@@ -265,9 +288,11 @@ const LandingPage: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Simplify Your Daily Life?
           </h2>
+
           <p className="text-xl text-gray-300 mb-8">
             Join thousands of boarding house residents who trust Kostmate for their daily needs
           </p>
+
           <button
             onClick={() => navigate('/register')}
             className="bg-gradient-to-r from-blue-600 to-green-500 text-white px-8 py-4 rounded-lg hover:from-blue-700 hover:to-green-600 transition-all duration-200 transform hover:scale-105 shadow-lg"
@@ -286,14 +311,18 @@ const LandingPage: React.FC = () => {
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-green-500 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">K</span>
                 </div>
+
                 <span className="ml-2 text-xl font-bold text-white">Kostmate</span>
               </div>
+
               <p className="text-gray-400 mb-6 max-w-md">
                 Making boarding house life easier by connecting residents with trusted local service providers.
               </p>
+
               <div className="flex space-x-4">
                 <div className="flex items-center text-gray-400">
                   <Phone className="w-5 h-5 mr-2" />
+
                   <span>+62 812-3456-7890</span>
                 </div>
               </div>
@@ -301,21 +330,30 @@ const LandingPage: React.FC = () => {
 
             <div>
               <h3 className="text-white font-semibold mb-4">Services</h3>
+
               <ul className="space-y-2 text-gray-400">
                 <li><a href="#" className="hover:text-white transition-colors duration-200">Express Laundry</a></li>
+
                 <li><a href="#" className="hover:text-white transition-colors duration-200">Gallon Delivery</a></li>
+
                 <li><a href="#" className="hover:text-white transition-colors duration-200">Lamp Replacement</a></li>
+
                 <li><a href="#" className="hover:text-white transition-colors duration-200">Room Cleaning</a></li>
+
                 <li><a href="#" className="hover:text-white transition-colors duration-200">Shopping Assistant</a></li>
               </ul>
             </div>
 
             <div>
               <h3 className="text-white font-semibold mb-4">Company</h3>
+
               <ul className="space-y-2 text-gray-400">
                 <li><a href="#" className="hover:text-white transition-colors duration-200">About Us</a></li>
+
                 <li><a href="#" className="hover:text-white transition-colors duration-200">How it Works</a></li>
+
                 <li><a href="#" className="hover:text-white transition-colors duration-200">Partners</a></li>
+
                 <li><a href="#" className="hover:text-white transition-colors duration-200">Contact</a></li>
               </ul>
             </div>

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useOrder } from '../context/OrderContext';
-import { ArrowLeft, Calendar, Clock, MapPin, CreditCard } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, MapPin } from 'lucide-react';
 
 const ServiceBookingPage: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { createOrder } = useOrder();
-  
+
   const [formData, setFormData] = useState({
     service: '',
     details: '',
@@ -114,11 +114,10 @@ const ServiceBookingPage: React.FC = () => {
                     {services.map((service) => (
                       <label
                         key={service.id}
-                        className={`relative flex cursor-pointer rounded-lg border p-4 focus:outline-none ${
-                          formData.service === service.id
-                            ? 'border-blue-600 ring-2 ring-blue-600 bg-blue-50'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
+                        className={`relative flex cursor-pointer rounded-lg border p-4 focus:outline-none ${formData.service === service.id
+                          ? 'border-blue-600 ring-2 ring-blue-600 bg-blue-50'
+                          : 'border-gray-300 hover:border-gray-400'
+                          }`}
                       >
                         <input
                           type="radio"
@@ -251,7 +250,7 @@ const ServiceBookingPage: React.FC = () => {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sticky top-8">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Ringkasan Pesanan</h2>
-              
+
               {selectedService ? (
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
@@ -268,11 +267,11 @@ const ServiceBookingPage: React.FC = () => {
                     <div className="pt-4 border-t border-gray-200">
                       <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
                         <Calendar className="w-4 h-4" />
-                        <span>{new Date(formData.date).toLocaleDateString('id-ID', { 
-                          weekday: 'long', 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
+                        <span>{new Date(formData.date).toLocaleDateString('id-ID', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
                         })}</span>
                       </div>
                       <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
@@ -294,7 +293,7 @@ const ServiceBookingPage: React.FC = () => {
                   </div>
 
                   {/* Payment Info */}
-                  <div className="pt-4 border-t border-gray-200">
+                  {/* <div className="pt-4 border-t border-gray-200">
                     <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
                       <CreditCard className="w-4 h-4" />
                       <span>Pembayaran</span>
@@ -307,7 +306,7 @@ const ServiceBookingPage: React.FC = () => {
                         Setelah menekan "Pesan Sekarang", status pembayaran akan otomatis berubah menjadi "Dibayar" untuk demo.
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               ) : (
                 <p className="text-gray-500 text-center py-8">
