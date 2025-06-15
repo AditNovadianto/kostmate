@@ -34,7 +34,8 @@ const ServiceBookingPage: React.FC = () => {
     { id: 'gallon', name: 'Gallon Delivery', price: 10000, description: 'Antar galon air minum' },
     { id: 'lamp', name: 'Lamp Replacement', price: 25000, description: 'Ganti lampu dan perbaikan listrik ringan' },
     { id: 'cleaning', name: 'Room Cleaning', price: 40000, description: 'Bersih-bersih kamar lengkap' },
-    { id: 'shopping', name: 'Shopping Assistant', price: 20000, description: 'Belanja kebutuhan sehari-hari' }
+    { id: 'shopping', name: 'Shopping Assistant', price: 20000, description: 'Belanja kebutuhan sehari-hari' },
+    { id: 'Gas Delivery', name: 'Gas Delivery', price: 30000, description: 'Pengantaran gas elpiji 3kg dan pemasangan' }
   ];
 
   const timeSlots = [
