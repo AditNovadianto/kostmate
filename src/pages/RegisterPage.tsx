@@ -215,7 +215,7 @@ const RegisterPage: React.FC = () => {
                   required
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="block w-full px-3 py-3 pr-10 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className={`${error !== "" ? 'ring-red-500 border-red-500' : 'ring-blue-500 border-blue-500'} block w-full px-3 py-3 pr-10 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none`}
                   placeholder="Ulangi password"
                 />
 
