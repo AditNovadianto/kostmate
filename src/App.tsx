@@ -10,6 +10,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import { AuthProvider } from './context/AuthContext';
 import { OrderProvider } from './context/OrderContext';
 import NotFound from './pages/NotFound';
+import PartnerDashboard from './pages/partnerDashboard';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="/track-order" element={<OrderTrackingPage />} />
               <Route path="/review/:orderId" element={<ReviewPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/partner" element={<PartnerDashboard />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>

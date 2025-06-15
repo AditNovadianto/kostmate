@@ -84,7 +84,7 @@ const AdminDashboard: React.FC = () => {
     pendingOrders: orders.filter(o => o.status === 'pending').length,
     inProgressOrders: orders.filter(o => ['assigned', 'in_progress'].includes(o.status)).length,
     completedOrders: orders.filter(o => o.status === 'completed').length,
-    totalRevenue: orders.filter(o => o.paymentStatus === 'paid').reduce((sum, o) => sum + o.price, 0),
+    totalRevenue: orders.filter(o => o.paymentStatus === 'paid').reduce((sum, o) => sum + (o.price * 0.2), 0),
     averageRating: orders.filter(o => o.review).length > 0
       ? (orders.filter(o => o.review).reduce((sum, o) => sum + (o.review?.rating || 0), 0) / orders.filter(o => o.review).length).toFixed(1)
       : '0.0'

@@ -38,7 +38,7 @@ const LoginPage: React.FC = () => {
               navigate('/admin');
               break;
             case 'partner':
-              navigate('/partner-dashboard');
+              navigate('/partner');
               break;
             default:
               navigate('/dashboard'); // for regular users
