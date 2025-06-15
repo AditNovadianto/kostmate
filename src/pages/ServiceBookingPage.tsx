@@ -10,7 +10,7 @@ const ServiceBookingPage: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { createOrder } = useOrder();
-  const [service, setService] = useState<string>('');
+  const [service, setService] = useState<string>('va');
 
   const [formData, setFormData] = useState({
     service: '',
